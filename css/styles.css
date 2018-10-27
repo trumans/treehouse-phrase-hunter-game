@@ -60,9 +60,14 @@ button {
   cursor: pointer;
 }
 
-#btn__reset {
+#btn__reset,
+#btn__new-game {
 	width: 200px;
 	margin: 0 auto;
+}
+
+#btn__new-game {
+  display: none;
 }
 
 .main-container {

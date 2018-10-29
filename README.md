@@ -1,15 +1,74 @@
 
-Letters can be selected by mouse or keyboard.
-Game recognizes uppercase and lowercase letters from keyboard.
+Basic rules of the game
 
-Phrases may contain uppercase letters.
+The player’s goal is to guess all the letters in a hidden, random phrase. At the beginning, the player only sees the number of letters and words in the phrase, represented by blank boxes on the screen.
 
-In regards to the New Phrase button, the indexes for the last X phrases are remembered by the game, where X is one-half of the items in the phrase array.
+To guess letters in the phrase the player may click an onscreen keyboard or select key from computer keyboard. The letter is then disabled on the onscreen keyboard and a player can't select that letter again.
 
-Keyboard and mouse clicks are ignored on start page and during fade-in to and from phrase/keyboard display.
+If the selected letter is in the phrase at least once, the letter and its position in the phrase is highlighted on screen. All instances of the letter are made visible (so if there are 3 A's, all of the A's in the phrase appear at once).
 
-Mouse over the onscreen keyboard expands the current key.
+If the selected letter is not in the phrase, one of the player's hearts changes to gray.
 
-When a letter is correctly guessed the background color transitions to the new color.
+The player keeps choosing letters until they reveal all the letters in the phrase, or they make 5 incorrect guesses.
 
-When a letter is incorrectly guessed the lost hearts transition to a gray heart.
+===
+
+JavaScript files
+
+Game.js (Game class)
+
+Primary properties:
+- an array of phrases to select from
+- current state of the game
+- recently used phrases
+
+Primary methods:
+- Transition display to Phrase/Keyboard display.
+- Transition display to Game Over display.
+- Handle a selected letter and call the appropriate functions to update the display.
+
+---
+
+Phrase.js (Phrase class)
+
+Primary properties:
+- the current phrase
+
+Primary methods:
+- display the appropriate number of blanks and spaces for a new phrase.
+- check if a letter is in the phrase.
+- reveal the selected letter in the phrase display.
+
+---
+
+app.js
+
+Create listeners for web elements
+- Start Game button: display the first empty phrase.
+- New Phrase button: reset the board and display a new empty phrase.
+- Onscreen keyboard keys: mark a key as selected.
+- Computer key presses: mark the corresponding onscreen key as selected if key is alphabetic and not previously selected.
+
+Primary functions
+
+- Mark a key as selected and call Game method to handle it.
+
+===
+
+Additional functionality notes
+
+The game transitions with a fade to the phrase/keyboard display and the game over display.
+
+Mouse hovering on the onscreen keyboard expands onscreen key.
+
+Letters can be selected from the computer keyboard or onscreen keyboard by mouse. The game accepts uppercase and lowercase letters.
+
+Phrases may contain uppercase letters, but the user does not need to correctly guess the case of the letter.
+
+When the phrase/keyboard display is not active keyboard presses are ignored. The same for mouse clicks over the onscreen display area.
+
+When a letter is correctly guessed the background color on the phrase board transitions to blue.
+
+When a letter is incorrectly guessed the blue heart transitions to a gray heart.
+
+When a new phrase is randomly selected the last X phrases are not reused. The number X is one-half of the phrases in the phrase array.

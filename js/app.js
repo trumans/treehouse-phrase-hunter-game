@@ -7,17 +7,18 @@ $('#btn__reset').click(function() {
   game.startGame();
 });
 
-// Reset Game button
+// New Phrase button
 $('#btn__new-phrase').click(function() {
   // clear the phrase
   $('#phrase').html('<ul></ul>');
   // reset onscreen keyboard: remove disabled attribute,
   //   remove the classes chosen & wrong
   $('button.key').removeAttr('disabled');
-  $('button.key').removeClass('chosen');
-  $('button.key').removeClass('wrong');
+  $('button.key.chosen').removeClass('chosen');
+  $('button.key.wrong').removeClass('wrong');
   // reset heart images
   $('.tries img').attr('src', 'images/liveHeart.png');
+  $('.tries img').removeClass('lost-heart');
   // re-display the game board
   resetDisplay(event.target);
   game.missed = 0;
@@ -25,30 +26,28 @@ $('#btn__new-phrase').click(function() {
 });
 
 // Display phrase board and keyboard
-//  reset phrase, onscreen keyboard, tries if New Game button clicked
+//   by fading-out overlay
 function resetDisplay() {
-  $('#overlay').hide();
+  $('#overlay').animate(
+    { opacity: '0' }, 1000,
+    function() {
+      $('#overlay').hide();
+      game.active = true;
+    });
 }
 
 // Create onscreen keyboard listener
-$('#qwerty').click(function(event) {
-  if ( event.target.tagName === 'BUTTON' ) {
-    markButton(event.target);
-  }
+$('#qwerty .key').click(function(event) {
+  if ( game.active ) { markButton(event.target); }
 });
 
-// Create key press listener
+// Create key press listener for keys a - z
+//   check the key is not already disabled before marking it
 $(document).keypress(function(event) {
   const keyPressed = event.key.toLowerCase();
-  if (keyPressed >= 'a' && keyPressed <= 'z') {
-    $('button.key').each(function() {
-      // mark the key button if it is the key pressed
-      //   and the button is not already disabled.
-      if ( $(this).text() === keyPressed &&
-           ! $(this).attr('disabled') ) {
-        markButton($(this)[0]);
-      }
-    });
+  if ( game.active && keyPressed >= 'a' && keyPressed <= 'z' ) {
+    const key = $('button.key.' + keyPressed);
+    if (! key.attr('disabled')) { markButton(key[0]); }
   }
 });
 

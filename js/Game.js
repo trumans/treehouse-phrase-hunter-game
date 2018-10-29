@@ -9,6 +9,7 @@ class Game {
     ];
     this.phrase = null;
     this.recentPhraseIndexes = [];
+    this.active = false;
   }
 
   startGame() {
@@ -54,29 +55,48 @@ class Game {
 
   /*
     Check that no letters are hidden in the phrase
-    @return {boolean} true of no letters are hidden, otherwise false
+      if so, end the game
   */
   checkForWin() {
-    let won = true;
-    $('#phrase .letter').each(function() {
-      won = won && ! $(this).attr('class').includes('hide');
-    });
-    if ( won ) {
-      this.gameOver('You guessed the phrase: ' + this.phrase.phraseText);
+    if ( $('#phrase .letter.hide').length === 0 ) {
+      this.gameOver('You guessed the phrase: ' + this.phrase.phraseText, true);
     }
   }
 
   removeLife() {
-    $('.tries img')[this.missed].setAttribute('src', 'images/lostHeart.png');
+    // update the heart corresponding to the miss
+    $('.tries img')[this.missed].classList.add('lost-heart');
     this.missed += 1;
+
+    // if all hearts are used then display 'lost' message
+    //   otherwise transition lost to lost heart image
     if ( this.missed === 5 ) {
-      this.gameOver('You are out of incorrect guesses'); }
+      this.gameOver('You are out of incorrect guesses', false);
+    } else {
+      const $lostLives = $('.tries img.lost-heart')
+      $lostLives.animate(
+        {opacity: '0'}, 500,
+        function() {
+          $lostLives.attr('src', 'images/lostHeart.png');
+          $lostLives.animate( {opacity: '1'}, 500 );
+        });
+    }
+
   }
 
-  gameOver(message) {
+  // Display game over message
+  gameOver(message, won) {
+    this.active = false;
     $('#game-over-message').text(message);
-    $('#overlay').show();
     $('#btn__reset').hide();
     $('#btn__new-phrase').show();
+
+    const $overlay = $('#overlay');
+    // change background color
+    $overlay.addClass( won ? 'win' : 'lose' );
+    $overlay.removeClass( !won ? 'win' : 'lose' );
+    // fade-in overlay
+    $overlay.show();
+    $overlay.animate({ opacity: '1'}, 1000 );
   }
 }

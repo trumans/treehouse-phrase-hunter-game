@@ -11,6 +11,9 @@ class Phrase {
     this.index = index;
   }
 
+  /*
+    Display the blanks and spaces for a new phrase
+  */
   addPhraseToDisplay() {
     const $ul = $('#phrase');
     let charElement;
@@ -23,10 +26,20 @@ class Phrase {
     }
   }
 
+  /*
+    Check if a letter is in the phrase
+    @param letter {string} assumed to be one letter
+    @return {boolean} true if the letter is in the phrase, case insensitive
+      otherwise false
+  */
   checkLetter(letter) {
     return this.phraseLowerCase.includes(letter);
   }
 
+  /*
+    Display all occurences of a letter in the phrase
+    @param letter {string} assumed to a a letter in the phrase
+  */
   showMatchedLetter(letter) {
     $(`#phrase .letter.${letter}`).toggleClass('show hide');
   }

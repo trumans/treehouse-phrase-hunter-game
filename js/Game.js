@@ -2,33 +2,51 @@ class Game {
   constructor() {
     this.missed = 0;
     this.phraseArray = [
-      "abc def ghi j",
-      "abc def ghi", "abc def gh", "abc def g",
-      "abc def", "abc de", "abc d",
-      "abc", "ab", "a",
+      "May the Force be with you",
+      "Mama always said life was like a box of chocolates",
+      "Rosebud",
+      "I see dead people",
+      "Houston we have a problem",
+      "bippity boppity boo",
+      "I am Groot",
+      "Open the pod bay doors HAL",
+      "My precious",
+      "To infinity and beyond",
+      "Of all the gin joints in all the towns in all the world she walks into mine",
+      "The dude abides"
     ];
     this.phrase = null;
     this.recentPhraseIndexes = [];
     this.active = false;
   }
 
+  /*
+    Transition to phrase/keyboard display
+  */
   startGame() {
     this.phrase = this.getRandomPhrase();
     this.phrase.addPhraseToDisplay();
   }
 
+  /*
+    return an index in the range of the phrases phraseArray
+  */
   randomIndex() {
     return Math.floor(Math.random() * this.phraseArray.length);
   }
 
+  /*
+    return a Phrase object with a phrase randomly selected from phrases array
+        don't return a phrase that was recently used
+  */
   getRandomPhrase() {
     let idx = this.randomIndex();
-    // if game already used this index then get another
+    // if the game recently used this index then get another
     while ( this.recentPhraseIndexes.includes(idx) ) {
       idx = this.randomIndex();
     }
 
-    // rmemember no more than half of the indexes in phraseArray
+    // remember no more than half of the indexes in phraseArray
     this.recentPhraseIndexes.push(idx);
     if ( this.recentPhraseIndexes.length > (this.phraseArray.length / 2) ) {
       this.recentPhraseIndexes.shift();
@@ -55,7 +73,7 @@ class Game {
 
   /*
     Check that no letters are hidden in the phrase
-      if so, end the game
+      if so, end the game with "win" message
   */
   checkForWin() {
     if ( $('#phrase .letter.hide').length === 0 ) {
@@ -63,15 +81,20 @@ class Game {
     }
   }
 
+  /*
+    Transform a live heart image to a lost heart
+      also update the missed guesses property.
+  */
   removeLife() {
-    // update the heart corresponding to the miss
+    // update the class on the heart corresponding to the miss
+    //   and update the missed guesses property
     $('.tries img')[this.missed].classList.add('lost-heart');
     this.missed += 1;
 
     // if all hearts are used then display 'lost' message
-    //   otherwise transition lost to lost heart image
+    //   otherwise transition image lost heart image
     if ( this.missed === 5 ) {
-      this.gameOver('You are out of incorrect guesses', false);
+      this.gameOver('You used all of your incorrect guesses', false);
     } else {
       const $lostLives = $('.tries img.lost-heart')
       $lostLives.animate(
@@ -84,7 +107,11 @@ class Game {
 
   }
 
-  // Display game over message
+  /*
+    Transition to the game over display with the supplied message
+      Display the Start Game overlay but with a background based on the
+      win/lose result and different button to start the game.
+  */
   gameOver(message, won) {
     this.active = false;
     $('#game-over-message').text(message);

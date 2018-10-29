@@ -18,14 +18,14 @@ JavaScript files
 Game.js (Game class)
 
 Primary properties:
-- an array of phrases to select from
+- array of phrases to select from
 - current state of the game
-- recently used phrases
+- array of recently used phrases
 
 Primary methods:
 - Transition display to Phrase/Keyboard display.
 - Transition display to Game Over display.
-- Handle a selected letter and call the appropriate functions to update the display.
+- Handle a user selected letter and call the appropriate functions to update the display.
 
 ---
 
@@ -43,32 +43,31 @@ Primary methods:
 
 app.js
 
-Create listeners for web elements
+Create listeners:
 - Start Game button: display the first empty phrase.
 - New Phrase button: reset the board and display a new empty phrase.
 - Onscreen keyboard keys: mark a key as selected.
 - Computer key presses: mark the corresponding onscreen key as selected if key is alphabetic and not previously selected.
 
-Primary functions
-
+Primary functions:
 - Mark a key as selected and call Game method to handle it.
 
 ===
 
-Additional functionality notes
+Additional comments about functionality
 
-The game transitions with a fade to the phrase/keyboard display and the game over display.
+The game fades to the phrase/keyboard display and to the game over display using jQuery animation.
 
-Mouse hovering on the onscreen keyboard expands the onscreen key.
+Mouse hovering on the onscreen keyboard expands the key.
 
 Letters can be selected from the computer keyboard or onscreen keyboard by mouse. The game accepts uppercase and lowercase letters.
 
-Phrases may contain uppercase letters, but the user does not need to correctly guess the case of the letter.
+Phrases may contain uppercase letters, but the user does not need to guess the case of the letter for a match.
 
-When the phrase/keyboard display is not active keyboard presses are ignored. The same for mouse clicks over the onscreen display area.
+When the phrase/keyboard display is not active any keyboard presses are ignored. The same for mouse clicks over the onscreen display area.
 
-When a letter is correctly guessed the background color on the phrase board transitions to blue.
+When a letter is correctly guessed the background color on the phrase board transitions to blue using CSS animation
 
-When a letter is incorrectly guessed the blue heart transitions to a gray heart.
+When a letter is incorrectly guessed the blue heart transitions to a gray heart using jQuery animation.
 
-When a new phrase is randomly selected the last X phrases are not reused. The number X is one-half of the phrases in the phrase array.
+When a new phrase is randomly selected the last X displayed phrases are not reused. The number X is one-half of the phrases in the phrase array.

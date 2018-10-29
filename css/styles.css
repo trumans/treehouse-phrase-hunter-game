@@ -60,6 +60,10 @@ button {
   cursor: pointer;
 }
 
+#qwerty button:hover:enabled {
+  transform: scale(1.25, 1.25);
+}
+
 #btn__reset,
 #btn__new-phrase {
 	width: 200px;
@@ -158,9 +162,6 @@ button {
   color: #FFFFFF;
 }
 
-.key:hover {
-  transform: scale(1.25, 1.25);
-}
 
 .btn__reset {
   padding: 16px;

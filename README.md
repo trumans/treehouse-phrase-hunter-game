@@ -59,7 +59,7 @@ Additional functionality notes
 
 The game transitions with a fade to the phrase/keyboard display and the game over display.
 
-Mouse hovering on the onscreen keyboard expands onscreen key.
+Mouse hovering on the onscreen keyboard expands the onscreen key.
 
 Letters can be selected from the computer keyboard or onscreen keyboard by mouse. The game accepts uppercase and lowercase letters.
 

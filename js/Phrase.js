@@ -1,7 +1,14 @@
 class Phrase {
-  constructor(phraseText) {
+  /*
+    @param phraseText {string} the phrase found in phrase array
+    @param index      {index}  the index of the phrase in the phrase array
+
+    phraseLowerCase {string} the phrase converted to lowercase. used in searches
+  */
+  constructor(phraseText, index) {
     this.phraseText = phraseText;
     this.phraseLowerCase = phraseText.toLowerCase();
+    this.index = index;
   }
 
   addPhraseToDisplay() {

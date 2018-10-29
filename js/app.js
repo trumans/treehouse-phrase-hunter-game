@@ -8,7 +8,7 @@ $('#btn__reset').click(function() {
 });
 
 // Reset Game button
-$('#btn__new-game').click(function() {
+$('#btn__new-phrase').click(function() {
   // clear the phrase
   $('#phrase').html('<ul></ul>');
   // reset onscreen keyboard: remove disabled attribute,

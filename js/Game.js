@@ -2,10 +2,13 @@ class Game {
   constructor() {
     this.missed = 0;
     this.phraseArray = [
-      "abcd efgh",
-      "Wxyz"
+      "abc def ghi j",
+      "abc def ghi", "abc def gh", "abc def g",
+      "abc def", "abc de", "abc d",
+      "abc", "ab", "a",
     ];
     this.phrase = null;
+    this.recentPhraseIndexes = [];
   }
 
   startGame() {
@@ -13,9 +16,24 @@ class Game {
     this.phrase.addPhraseToDisplay();
   }
 
+  randomIndex() {
+    return Math.floor(Math.random() * this.phraseArray.length);
+  }
+
   getRandomPhrase() {
-    const idx = Math.floor(Math.random() * this.phraseArray.length)
-    return new Phrase(this.phraseArray[idx]);
+    let idx = this.randomIndex();
+    // if game already used this index then get another
+    while ( this.recentPhraseIndexes.includes(idx) ) {
+      idx = this.randomIndex();
+    }
+
+    // rmemember no more than half of the indexes in phraseArray
+    this.recentPhraseIndexes.push(idx);
+    if ( this.recentPhraseIndexes.length > (this.phraseArray.length / 2) ) {
+      this.recentPhraseIndexes.shift();
+    }
+
+    return new Phrase(this.phraseArray[idx], idx);
   }
 
   /*
@@ -59,6 +77,6 @@ class Game {
     $('#game-over-message').text(message);
     $('#overlay').show();
     $('#btn__reset').hide();
-    $('#btn__new-game').show();
+    $('#btn__new-phrase').show();
   }
 }

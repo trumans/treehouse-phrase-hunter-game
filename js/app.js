@@ -55,7 +55,7 @@ $('#qwerty .key').click(function(event) {
 $(document).keypress(function(event) {
   const keyPressed = event.key.toLowerCase();
   if ( game.active && keyPressed >= 'a' && keyPressed <= 'z' ) {
-    const key = $('button.key.' + keyPressed);
+    const key = $(`button.key.${keyPressed}`);
     if (! key.attr('disabled')) { markButton(key[0]); }
   }
 });

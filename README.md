@@ -1,5 +1,5 @@
 
-# Basic rules of the game #
+# How to play the game #
 
 The goal is to guess all the letters in a hidden random phrase. At the beginning the player only sees the number of letters and words in the phrase, represented by blank boxes on the screen.
 

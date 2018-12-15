@@ -1,7 +1,7 @@
 
 # Basic rules of the game #
 
-The player’s goal is to guess all the letters in a hidden random phrase. At the beginning, the player only sees the number of letters and words in the phrase, represented by blank boxes on the screen.
+The goal is to guess all the letters in a hidden random phrase. At the beginning the player only sees the number of letters and words in the phrase, represented by blank boxes on the screen.
 
 To guess a letter the player either mouse clicks an on-screen keyboard or selects the key from computer keyboard. If the selected letter is in the phrase, all of its positions in the phrase are displayed and it is highlighted in green on the keyboard. If the letter is not in the phrase, one of the player's remaining hearts changes to gray and it is highlighted in red on the keyboard.
 

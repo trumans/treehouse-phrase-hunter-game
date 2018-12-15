@@ -1,21 +1,16 @@
 
-Basic rules of the game
+# Basic rules of the game #
 
-The player’s goal is to guess all the letters in a hidden, random phrase. At the beginning, the player only sees the number of letters and words in the phrase, represented by blank boxes on the screen.
+The player’s goal is to guess all the letters in a hidden random phrase. At the beginning, the player only sees the number of letters and words in the phrase, represented by blank boxes on the screen.
 
-To guess letters in the phrase the player may click an onscreen keyboard or select key from computer keyboard. The letter is then disabled on the onscreen keyboard and a player can't select that letter again.
-
-If the selected letter is in the phrase at least once, the letter and its position in the phrase is highlighted on screen. All instances of the letter are made visible (so if there are 3 A's, all of the A's in the phrase appear at once).
-
-If the selected letter is not in the phrase, one of the player's hearts changes to gray.
+To guess a letter the player either mouse clicks an on-screen keyboard or selects the key from computer keyboard. If the selected letter is in the phrase, all of its positions in the phrase are displayed and it is highlighted in green on the keyboard. If the letter is not in the phrase, one of the player's remaining hearts changes to gray and it is highlighted in red on the keyboard.
 
 The player keeps choosing letters until they reveal all the letters in the phrase, or they make 5 incorrect guesses.
 
-===
 
-JavaScript files
+# JavaScript files #
 
-Game.js (Game class)
+## Game.js (Game class) ##
 
 Primary properties:
 - array of phrases to select from
@@ -27,9 +22,7 @@ Primary methods:
 - Transition display to Game Over display.
 - Handle a user selected letter and call the appropriate functions to update the display.
 
----
-
-Phrase.js (Phrase class)
+## Phrase.js (Phrase class) ##
 
 Primary properties:
 - the current phrase
@@ -39,9 +32,7 @@ Primary methods:
 - check if a letter is in the phrase.
 - reveal the selected letter in the phrase display.
 
----
-
-app.js
+## app.js ##
 
 Create listeners:
 - Start Game button: display the first empty phrase.
@@ -52,9 +43,8 @@ Create listeners:
 Primary functions:
 - Mark a key as selected and call Game method to handle it.
 
-===
 
-Additional comments about functionality
+# Additional comments about functionality #
 
 The game fades to the phrase/keyboard display and to the game over display using jQuery animation.
 

@@ -46,18 +46,18 @@ Primary functions:
 
 # Additional comments about functionality #
 
-The game fades to the phrase/keyboard display and to the game over display using jQuery animation.
+- The game fades to the phrase/keyboard display and to the game over display using jQuery animation.
 
-Mouse hovering on the onscreen keyboard expands the key.
+- Mouse hovering on the onscreen keyboard expands the key.
 
-Letters can be selected from the computer keyboard or onscreen keyboard by mouse. The game accepts uppercase and lowercase letters.
+- Letters can be selected from the computer keyboard or onscreen keyboard by mouse. The game accepts uppercase and lowercase letters.
 
-Phrases may contain uppercase letters, but the user does not need to guess the case of the letter for a match.
+- Phrases may contain uppercase letters, but the user does not need to guess the case of the letter for a match.
 
-When the phrase/keyboard display is not active any keyboard presses are ignored. The same for mouse clicks over the onscreen display area.
+- When the phrase/keyboard display is not active any keyboard presses are ignored. The same for mouse clicks over the onscreen display area.
 
-When a letter is correctly guessed the background color on the phrase board transitions to blue using CSS animation
+- When a letter is correctly guessed the background color on the phrase board transitions to blue using CSS animation
 
-When a letter is incorrectly guessed the blue heart transitions to a gray heart using jQuery animation.
+- When a letter is incorrectly guessed the blue heart transitions to a gray heart using jQuery animation.
 
-When a new phrase is randomly selected the last X displayed phrases are not reused. The number X is one-half of the phrases in the phrase array.
+- When a new phrase is randomly selected the last X displayed phrases are not reused. The number X is one-half of the phrases in the phrase array.
